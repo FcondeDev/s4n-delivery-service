@@ -16,14 +16,14 @@ import com.s4n.delivery.service.DeliveryService;
 import com.s4n.delivery.service.Movements;
 import com.s4n.delivery.service.ReportGeneration;
 
-public class DeliveryServiceImpl implements DeliveryService {
+public class DroneDeliveryServiceImpl implements DeliveryService {
 
-	Logger logger = Logger.getLogger(DeliveryServiceImpl.class.getName());
+	Logger logger = Logger.getLogger(DroneDeliveryServiceImpl.class.getName());
 
 	private Movements movements;
 	private ReportGeneration reportGeneration;
 
-	public DeliveryServiceImpl(Movements movements, ReportGeneration reportGeneration) {
+	public DroneDeliveryServiceImpl(Movements movements, ReportGeneration reportGeneration) {
 		super();
 		this.movements = movements;
 		this.reportGeneration = reportGeneration;
@@ -54,6 +54,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 			// variables again, we have to check if there are some deliveries left too
 			if (deliveryPerDroneCount == maxNumberOfDeliveriesPerDrone
 					|| numberOfDeliveries - numberofDeliveriesDone == numberOfDeliveriesLeft) {
+				logger.info(String.format("Generating report for drone : %s", droneDTO.getName()));
 				reportGeneration.generateReport(droneDTO, finalDeliveryPositions);
 				finalDeliveryPositions = new LinkedList<>();
 				numberOfDronesDeployed = numberOfDronesDeployed + 1;
@@ -64,7 +65,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 				deliveryPerDroneCount = 0;
 			}
 
-			if (numberOfDronesDeployed > maxNumberOfDronesAvailable) {
+			if (numberOfDronesDeployed == maxNumberOfDronesAvailable) {
 				logger.info(
 						"There is not more drones available for delivering, the operation is closed. Please see the reports for more information");
 				return "Exit code, No drones available, Please check the reports to track each drone";

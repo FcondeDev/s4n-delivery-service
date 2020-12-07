@@ -8,16 +8,16 @@ import java.util.logging.Logger;
 
 import com.s4n.delivery.exception.ServiceException;
 import com.s4n.delivery.service.DeliveryService;
-import com.s4n.delivery.service.impl.DeliveryServiceImpl;
+import com.s4n.delivery.service.impl.DroneDeliveryServiceImpl;
 import com.s4n.delivery.service.impl.DroneMovementsImpl;
-import com.s4n.delivery.service.impl.ReportGenerationImpl;
+import com.s4n.delivery.service.impl.DroneDeliveryReportGenerationImpl;
 
 public class DeliveryMainApplication {
 	static Logger logger = Logger.getLogger(DeliveryMainApplication.class.getName());
 
 	public static void main(String[] args) throws ServiceException {
 
-		DeliveryService deliveryService = new DeliveryServiceImpl(new DroneMovementsImpl(), new ReportGenerationImpl());
+		DeliveryService deliveryService = new DroneDeliveryServiceImpl(new DroneMovementsImpl(), new DroneDeliveryReportGenerationImpl());
 		try {
 			
 			List<String> allTheRoutes = Files.readAllLines(Paths.get("src","main","resources","routes.txt"));

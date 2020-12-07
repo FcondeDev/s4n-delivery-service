@@ -1,4 +1,0 @@
-== Reporte de entregas ==
-(0,11,N)
-(0,0,N)
-(0,10,W)

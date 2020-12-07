@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 import com.s4n.delivery.dto.DroneDTO;
 import com.s4n.delivery.service.ReportGeneration;
 
-public class ReportGenerationImpl implements ReportGeneration {
+public class DroneDeliveryReportGenerationImpl implements ReportGeneration {
 
-	Logger logger = Logger.getLogger(ReportGenerationImpl.class.getName());
+	Logger logger = Logger.getLogger(DroneDeliveryReportGenerationImpl.class.getName());
 
 	@Override
 	public void generateReport(DroneDTO droneDTO, List<String> finalDeliveryPositions) {
