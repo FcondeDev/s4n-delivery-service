@@ -12,13 +12,13 @@ public class DeliveryConfiguration {
 	private DeliveryConfiguration() {
 	}
 
-	public static int getProperty(String property) throws ServiceException {
+	public static String getProperty(String property) throws ServiceException {
 
 		try (InputStream input = new FileInputStream("src/main/resources/application-default.properties")) {
 
 			Properties properties = new Properties();
 			properties.load(input);
-			return Integer.parseInt((String) properties.get(property));
+			return (String) properties.get(property);
 		} catch (IOException e) {
 			throw new ServiceException(String.format("There was an error loading default properties %s", e));
 

@@ -87,8 +87,9 @@ public class DroneMovementsImpl implements Movements {
 	}
 
 	private boolean checkDistanceConstrain(DroneDTO droneDTO) throws ServiceException {
-		int maxDistanceTosendADelivery = DeliveryConfiguration.getProperty("maxDistanceTosendADelivery");
-		return Math.sqrt(Math.pow(droneDTO.getX(), 2) + Math.pow(droneDTO.getY(), 2)) <= maxDistanceTosendADelivery;
+		int maxDistanceTosendADelivery = Integer
+				.parseInt(DeliveryConfiguration.getProperty("maxDistanceTosendADelivery"));
+		return Math.sqrt(Math.pow(droneDTO.getX(), 2) + Math.pow(droneDTO.getY(), 2)) < maxDistanceTosendADelivery;
 	}
 
 }

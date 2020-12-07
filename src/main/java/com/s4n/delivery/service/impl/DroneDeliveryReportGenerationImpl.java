@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.s4n.delivery.config.DeliveryConfiguration;
 import com.s4n.delivery.dto.DroneDTO;
 import com.s4n.delivery.service.ReportGeneration;
 
@@ -16,7 +17,8 @@ public class DroneDeliveryReportGenerationImpl implements ReportGeneration {
 	@Override
 	public void generateReport(DroneDTO droneDTO, List<String> finalDeliveryPositions) {
 
-		try (PrintWriter writer = new PrintWriter("src/main/resources/" + droneDTO.getName(), "UTF-8")) {
+		try (PrintWriter writer = new PrintWriter(
+				DeliveryConfiguration.getProperty("reportsRoute") + droneDTO.getName(), "UTF-8")) {
 			writer.println(REPORT_TITLE);
 			for (String finalPosition : finalDeliveryPositions) {
 				writer.println(finalPosition);

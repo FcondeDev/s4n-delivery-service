@@ -30,8 +30,10 @@ public class DroneDeliveryServiceImpl implements DeliveryService {
 	}
 
 	public String executeDelivery(List<String> allTheRoutes) throws ServiceException {
-		int maxNumberOfDeliveriesPerDrone = DeliveryConfiguration.getProperty("maxNumberOfDeliveriesPerDrone");
-		int maxNumberOfDronesAvailable = DeliveryConfiguration.getProperty("maxNumberOfDronesAvailable");
+		int maxNumberOfDeliveriesPerDrone = Integer
+				.parseInt(DeliveryConfiguration.getProperty("maxNumberOfDeliveriesPerDrone"));
+		int maxNumberOfDronesAvailable = Integer
+				.parseInt(DeliveryConfiguration.getProperty("maxNumberOfDronesAvailable"));
 
 		int numberOfDronesDeployed = 1;
 		int deliveryPerDroneCount = 0;
